@@ -1,0 +1,568 @@
+---
+title             : "No Evaluative Conditioning Effects with Briefly Presented Stimuli"
+shorttitle        : "EC with brief stimulus presentation"
+
+author: 
+  - name          : "Tobias Heycke"
+    affiliation   : " "
+    corresponding : yes    # Define only one corresponding author
+    address       : "Herbert-Lewin-Str. 2, 50931 Cologne, Germany"
+    email         : "t.heycke@uni-koeln.de"
+  - name          : "Christoph Stahl"
+    affiliation   : " "
+
+affiliation:
+  - id            : " "
+    institution   : "University of Cologne"
+
+
+author_note: >
+  TH (orcid: 0000-0001-6358-6713) & CS (orcid: 0000-0002-9033-894X) planned and conducted the experiment, analyzed the data, and wrote the article. The study was funded by a grant awarded to the first author by the Graduate School of the Faculty of Human Sciences, University of Cologne, and by Deutsche Forschungsgemeinschaft Grant 1269/3-1 awarded to the second author. The data presented here is part of the dissertation of the first author. We thank N. Becker, K. Mattonet, L. Moerschbacher, P. Musfeld, & L. Spitzer for their help with the data collection of the pilot studies and the experiment and J. Berkessel for her help with the data collection of the online pilot study. Additional material, data files, and analysis scripts are provided at osf.io/3dn7e/.
+
+abstract: >
+  Evaluative conditioning (EC) changes the preference towards a formerly neutral stimulus (Conditioned Stimulus; CS), by pairing it with a valent stimulus (Unconditioned Stimulus; US), in the direction of the valence of the US. When the CS is presented suboptimally (i.e., too briefly to be consciously perceived), contingency awareness between CS and US can be ruled out. Hence, EC effects with suboptimally presented CSs would support theories claiming that contingency awareness is not necessary for EC effects to occur. Recent studies reported the absence of EC with briefly presented CSs when both CS and US were presented in the visual modality, even though the CSs were identified at above-chance levels. Challenging this finding, Heycke and colleagues (2017) found some evidence for an EC effect with briefly presented visual stimuli in a cross-modal paradigm with auditory USs, but that study did not assess CS visibility. The present study realized a close replication of this study, while deviated from it by using different stimuli, introducing a brief practice phase, and adding a CS visibility check. Overall EC for briefly presented stimuli was absent, and results from the visibility check show that an EC effect with briefly presented CSs was only found, when the CSs were identified at above-chance levels.
+  
+  
+keywords          : "evaluative conditioning, implicit learning, subliminal learning, cross-modal conditioning, awareness"
+wordcount         : "4890" 
+
+bibliography:
+  - r-references5.bib
+  - Croco5.bib
+
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : yes
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+class             : "man"
+output            : papaja::apa6_pdf
+
+---
+
+
+```{r init, message = FALSE, warning = FALSE, results = "hide"}
+# load all librarys
+library("papaja")
+library("BayesFactor")
+library("rvest")
+library("RCurl")
+library("tidyr")
+library("yarrr")
+library("afex")
+
+#load functions from external script
+source("functionsTH.R")
+
+#theme_set(theme_apa(box = TRUE))
+knitr::opts_chunk$set(dev = c("pdf", "tiff", "postscript"))
+options(contrasts = c("contr.sum", "contr.poly"))
+
+# Seed for random number generation
+set.seed(42)
+
+```
+
+The evaluative conditioning (EC) effect is a change in evaluation of an initially neutral conditioned stimulus (CS) after (repeated) pairing with a negative or positive unconditioned stimulus (US) in the direction of the valence of the US [@de_houwer_conceptual_2007].
+While there is no doubt about the existence of the effect [@hofmann_evaluative_2010], there are currently two opposing views about the underlying processes explaining EC effects; namely propositional single-process views [@mitchell_propositional_2009] and dual-process views [@gawronski_associative_2006; @gawronski_associative-propositional_2014].
+One important difference between the two views concerns the role of  CS-US contingency awareness and its necessity for EC effects to occur [for a review see @sweldens_role_2014].
+Proponents of propositional single-process views claim that contingency awareness is a necessary precondition for EC effects to occur [@mitchell_propositional_2009].
+Put differently, participants have to be aware of both the CS, the US, and their co-occurrence during the learning phase in order for a change in CS valence (in line with US valence) in a subsequent evaluation to occur. 
+Support for this claim comes from studies demonstrating that EC effects were only found when participants were aware of the US valence with which CSs had been shown [@stahl_respective_2009].
+
+Proponents of dual-process views [for example as described in the associative-propositional evaluation model; @gawronski_associative_2006; @gawronski_associative-propositional_2014] claim that in addition to a propositional learning process, associative learning processes exist that require no contingency awareness for associations to form.
+A change in preference -- in an associative framework -- can be the result of a co-occurrence of a CS and US in the absence of the explicit knowledge of participants that these two stimuli appeared together.
+Dual-process theories are supported by findings of EC effects in experimental conditions under which contingency awareness is highly unlikely or even impossible:
+If EC effects can be found with a subliminal presentation schedule, contingency awareness between CS and US can be ruled out.
+Such effects could therefore not be explained by propositional single-process views [@mitchell_propositional_2009].
+
+A number of studies empirically support the notion of EC effects with subliminally presented stimuli [e.g., @dijksterhuis_i_2004; @niedenthal_implicit_1990; @rydell_two_2006].
+Most of these studies, however, have been criticized on methodological grounds [e.g., manipulation of US valence between participants allowing for mood differences between groups as an explanation for evaluation differences; @sweldens_role_2014] or could not be replicated by an independent lab [@heycke_two_2018].
+
+Additional empirical evidence for the absence of EC with briefly presented stimuli was recently introduced by @stahl_subliminal_2016.
+In a series of studies, with presentation conditions similar to those realized in previous subliminal-EC research, they found evidence for the *absence* of an EC effect [^Stahl]. 
+In most of the experiments, Stahl and colleagues measured the visibility of the briefly presented words using an online visibility check.
+Specifically, after every trial during the learning phase, participants had to select the CS (from a selection of CSs) that was presented during that trial.
+This online check of visibility enabled the researchers to obtain a more accurate estimation of the actual visibility of stimuli during the experiment [@lovibond_role_2002] as compared to asking for memory of briefly presented stimuli only at the end of the study [e.g., @rydell_two_2006].
+One could speculate, however, that this online visibility check might interfere with the learning procedure in two ways:
+(I) participants might be in a deliberative and analytic mindset during the task as they are trying to identify the briefly presented stimuli, and therefore associations between the briefly presented CS and the US might not form if they depend on holistic processes,
+(II) assuming that a new evaluative response toward the CSs is acquired during the learning phase, showing multiple CSs that were paired with USs of different valence after every trial during the learning phase could be considered an additional trial of the learning phase, and could therefore interfere with the intended CS-US pairing schedule.
+A recent experiment by @heycke_subliminal_2017 attempted to tackle this potential interference by omitting the online visibility check, while also addressing another potential limitation: the presentation schedule of the CS-US pairs.
+
+[^Stahl]: Note that, in these studies, CS presentation was not fully subliminal: Although CS identification performance was very low, it was significantly above chance levels, thereby ruling out the alternative explanation that the CSs have not been processed at all.
+
+
+One potentially important factor in EC with briefly presented stimuli -- central to the studies reported by Heycke and colleagues -- is the simultaneous presentation of CS and US.
+Recent findings support a claim by the implicit misattribution theory [@jones_implicit_2009] that EC effects acquired in an associative automatic fashion require a simultaneous presentation of CS and US [@hutter_implicit_2013; @sweldens_evaluative_2010].
+If this characteristic of the learning phase is indeed necessary for automatic EC effects to occur, it could help explain why recent replication studies did not find an EC effect in a sequential learning paradigm [@heycke_two_2018].
+Studies showing the need for a simultaneous CS-US presentation for associative automatic EC effects, however, did not use a subliminal presentation schedule.
+In a subliminal presentation paradigm, participants' visual attention might be focused on either the briefly presented CS, or the US, but not both.
+It therefore seems difficult to realize a simultaneous visual presentation of CS and US when either one is presented subliminally.
+
+Heycke and colleagues (2017) speculated that a cross-modal EC paradigm, with (subliminal) visual CSs and positive/negative sounds as USs, might allow for a simultaneous presentation (or, more importantly, simultaneous processing) of CS and US.
+Presenting CS and US simultaneously using this cross-modal paradigm might therefore provide a better test of subliminal EC effects acquired via implicit misattribution (Jones et al., 2009).
+In a high-powered study using this paradigm -- that avoided the potential problem of the online visibility check -- indications for an EC effect with briefly presented stimuli were indeed found. 
+These results were in contrast to previous findings of no EC effect with suboptimally presented CSs (Stahl et al., 2016).
+
+Two limitations should be noted, however. First, the Bayes factor found by Heycke and colleagues (2017) in support of this finding ($\mathit{BF_{10}}$ = 6.88) was not convincing if one were to hold a strong prior believe against the existence of EC effects with subliminal stimuli.
+Second, pilot studies showed that CSs were recognized at above-chance levels under the conditions realized in that study.
+
+Taken together, Heycke et al. (2017) found an EC effect for briefly presented -- but slightly supraliminal -- CSs in a cross-modal presentation paradigm.
+While the cross-modal approach appears promising, it remains to be seen whether the EC effect found by Heycke et al. (2017) can be replicated, and whether it relies on above-chance CS identification or extends to CSs detected at chance level.
+
+# Methods
+
+As the current study aims at replicating the findings by Heycke et al. (2017), we used the same experimental script, with some minor adjustments:
+(1) In order to ensure that the effect found by Heycke et al. (2017) can be generalized to different stimuli, we used a new set of CSs that were randomly assigned to a brief and a longer CS presentation time condition.
+(2) We additionally added an extensive visibility check, which was conducted after the measurement of the dependent variable.
+The study can therefore be considered a close replication of the study by Heycke et al. (2017), using different participants, different CSs, and adding an extensive visibility check.
+(3) The original study by Heycke et al. (2017) made use of a second dependent variable alongside an evaluative task, namely a choice task in which participants were presented with CSs (paired with positive versus negative USs) and had to indicate the one they preferred. 
+No EC effect for briefly presented CSs was found using this choice task and the task appeared to have had an effect on subsequent evaluative ratings. 
+We therefore dropped the choice task in order to focus on evaluative ratings as the more promising dependent variable.
+(4) We added a ten-trial practice phase before the learning phase, in which we provided feedback to the task in which participants had to react to a specific stimulus by pressing the space bar. 
+These practice trials were included because we had observed in previous studies that the task was not executed properly by all participants.
+
+## Design
+
+The study followed a 2 (US Valence: positive vs. negative) $\times$ 2 (CS duration: 30 ms vs. 1000 ms) within subjects design. 
+
+## Material
+
+We used the same 800 ms long sounds as USs that were used in the study by Heycke et al. (2017). 
+The sounds were consonant and dissonant triad chords, with the consonant sounds rated as more pleasant than the dissonant sounds [@topolinski_phasic_2012; @topolinski_phasic_2013]. 
+The Pokemon images used as CSs by Heycke et al. (2017) were replaced by a new set of images depicting less popular toy figures.
+
+## Procedure
+
+The learning phase followed the procedure of the experiment by Heycke et al. (2017). 
+A video of an example procedure can be watched at: https://osf.io/eyfxs/ (please note that the stimulus presentation times in the video might differ from the actual presentation times as refresh rates of monitors and the recording software might differ).
+In order to ensure that participants paid attention to the briefly presented stimuli, participants first received surveillance instructions [see @olson_implicit_2001]. 
+Specifically, participants were instructed to press the space bar as soon as a specific target character appeared.
+One (of two) stimuli (which were the same motivational stimuli as in the pilot studies) was randomly selected to be the target stimulus for each participant anew.
+Participants then completed a 10-trial practice phase for the surveillance task.
+In this practice phase, the actual target (shown 4 times) plus three stimuli (shown twice each) were shown (targets for 200 ms and the other images for 30 ms or 1000 ms).
+The three non-targets were only used for this practice phase, while the target was also the target in the following learning phase.
+During the practice phase, only neutral sounds were played (see below).
+Additionally -- and contrary to the subsequent learning phase -- feedback was given when the space bar was pressed (hit or false alarm) and feedback was given after trials in which a target was shown but the space bar was not pressed.
+We included these practice trials as we had observed in previous studies that the surveillance task was not performed by all participants.
+As we used the performance on this task as an outlier criterion (see below), we wanted to make sure that participants were aware that their performance on the task was measured.
+After the practice phase, the same target stimulus was shown again, and participants were instructed that they would not receive feedback anymore on their performance in the following detection task.
+
+Each trial in the subsequent learning phase was set up as follows:
+A fixation cross with a duration of 500 ms in the center of the screen announced the trial and was followed by a random-checkerboard pattern mask presented for 500 ms.
+The mask was randomly rotated by either 0, 90, 180 or 270 degrees.
+Afterwards, either a CS was shown for 30 ms or 1000 ms; or a surveillance target was presented (for 200 ms); or the (non-target) motivational stimulus (see above) was shown for 80 ms.
+The US onset was always 400 ms before the CS onset, in order to approximate a simultaneous experience of CS and US valence.
+The trial was followed by a 100 ms backward mask (also randomly rotated, but with a different angle than the forward mask) and a 1500 ms intertrial interval with a blank screen.
+
+The learning phase consisted of 4 CSs presented for 30 ms and 4 CSs shown for 1000 ms, which were randomly assigned to the presentation time for each participant anew.
+Half of the CSs were each paired with all ten positive sounds, while the other half were each paired with all ten negative sounds; pairing was randomly determined. 
+Additionally, as described above, a target image was randomly selected for each participant anew out of the two motivational stimuli.
+Both motivational stimuli were always paired with ten different neutral ticking sounds taken from Heycke et al. (2017).
+During the learning phase, each image-sound pair was therefore shown 10 times in a random order, which resulted in 100 trials in total.
+
+After the learning phase, evaluative ratings of the CSs were administered. 
+Participants were instructed to give their spontaneous evaluation of the previously shown figures. 
+Each CS was presented in the center of the screen (in a random order) and the question "How much do you like this creature?" was presented above it. 
+Below each CS a slider ranging from - 100 (labeled '- 100 = not at all') to 100 (labeled '100 = very much') with tick marks at every 10 steps was presented. 
+Participants could click on any point of the slider and the evaluation was submitted by clicking a "submit" button below the slider. 
+The evaluations were internally coded as ranging from 0 to 200. 
+
+In the subsequent visibility test, all CS-US pairs (including the target and motivational stimulus) were shown again in the same order as in the learning phase.
+However, no target instructions were given; instead, after each trial, participants were presented with all 10 CS stimuli (8 CSs, 1 motivational stimulus, 1 surveillance target stimulus).
+Participants were instructed to click on the stimulus that had just been shown in that trial.
+At the end of the study, participants answered demographic questions (age, study, gender, was the headphone worn, goal of experiment, and comments) [^open].
+
+[^open]: The data of the pretest and the main study were collected under a Born Open Data protocol [@rouder_what_2016] in which they were automatically logged, uploaded, and made freely available after every day of data collection (github.com/methexp/rawdata/tree/master/croco4, github.com/methexp/rawdata/tree/master/croco4b, github.com/methexp/rawdata/tree/master/croco5).
+
+## Data analysis
+
+```{r cite_r}
+r_citations <- cite_r("r-references5.bib", pkgs = c("afex", "boot", "bitops", "xml2", "coda", "estimability", "Matrix", "Rcpp", "reshape2", "MASS", "polspline", "lsr", "StanHeaders", "MCMCpack", "ggplot2", "circlize", "jpeg", "beeswarm", "emmeans", "lme4", "lsmeans", "RCurl", "rvest"), footnote = TRUE)
+```
+
+We used the same outlier and exclusion criteria as in the previous study [@heycke_subliminal_2017].
+Before conducting any data analyses, we excluded participants who (a) reported that they did not wear the headphones during the experiment, (b) did not press the space bar often enough when a target image was shown (using Tukey's outlier criterion but only if the criterion reached 3 misses out of 10 trials, allowing for 1 or 2 misses), (c) aborted the experiment or (d) explicitly reported major (unexpected) problems during the experiment (e.g., distractions or difficulties with the instructions).
+
+For the data collection we used a sequential Bayesian analysis paradigm  [@schonbrodt_sequential_2015; @rouder_optional_2014], analyzing the data after every day of data collection and stopping after a pre-defined criterion was reached (see below).
+We use $\mathit{BF_{10}}$ to denominate the evidence for the alternative hypothesis relative to the null hypothesis (i.e., $\mathit{BF_{10}} > 1$ indicates support for the alternative hypothesis over the null hypothesis) while $\mathit{BF_{01}}$ denominates the evidence for the null hypothesis relative to the alternative hypothesis (i.e., $\mathit{BF_{01}} > 1$ indicates support for the null hypothesis).
+All data analyses were performed in `r r_citations$r`. `r r_citations$pkgs`
+
+Repeated measures ANOVAs were performed to analyse the interaction between US valence and presentation time in the evaluative ratings and paired $t$ tests to examine interaction effects.
+In the Bayes Factor ANOVA analyses, the following method of estimation whether a given interaction or factor should be considered to have an influence on the evaluative rating was used:
+A full model with all main effects and interactions was compared to a model without the main effect or interaction (i.e., the predictor) of interest.
+A Bayes factor for the alternative hypothesis over the null hypothesis (i.e., $\mathit{BF}_{10}$ > 1) could be interpreted as relative evidence for one model (i.e., the full model including our predictor term of interest) over the competing model (without the predictor interest).
+As in the previous studies by Heycke et al. (2017), we used default multivariate Cauchy priors [@rouder_default_2012] with a scaling parameter of $r = 0.5$ in the Bayes factor ANOVA and Cauchy priors with a scaling parameter of $r = \sqrt{2}/2$ for all $t$ tests [@rouder_bayesian_2009].
+All errors for Bayes factor estimates were less than 1%.
+For all *t* tests we also report the median of the posterior distribution as an effect size estimate and its 95% highest density interval (HDI; with a probability of 95%, the true population effect size is within the 95% HDI). 
+Additionally, for all analyses, the total number of individual participants included in the analysis is reported in brackets. 
+
+### Sample size rationale
+
+As part of the sequential Bayesian analyses paradigm, we started the data analysis after initially collecting the data of 30 participants, with the same stopping rules used by Heycke and colleagues (2017) in Experiment 3.
+Specifically, we decided a priori to collect data until either the Bayes factors for both *t* tests of interest (i.e., for an EC effect in the 1000 ms condition and an EC effect in the 30 ms condition) were larger than 10 (for the null or alternative hypothesis) or until a maximum of 150 (paid) participants was reached.
+We ran the analyses after every day of data collection and decided that signed-up participants were allowed to participate, even if we had already stopped the data collection based on the above specified analyses.
+
+### Participants
+
+```{r Demographics5, warning = FALSE}
+# Read in the Damographics data
+load("cachedData/DemoData5")
+
+# number of humans who took part initially
+# pp nr 66 was accidentally given and experiment aborted (no participant was present)
+allPP  <- length(unique(DemoData5$ParticipantNumber))-1
+
+#exclude the following participants (see lab protocoll for details):
+# Nr 4, 5, 7, 13, 160 were excluded as they participated in previous study
+# Nr. 30 was excluded as he/she knew about this exact experiment but took part anyway
+ExclList5 <- c(4, 5, 7, 13, 30, 66, 160)
+
+# add participant number 116 to exclusion list, because she reported not to have always worn the headphones
+# subset(DemoData5, Kopfhörer == "ein paar min.")$ParticipantNumber
+HP <- 116
+
+ExclList5 <- c(ExclList5, HP)
+```
+
+```{r TrialData5}
+
+load("cachedData/TrialData5")
+
+#remove participants that had to be excluded
+TrialData5 <- subset(TrialData5, !(ParticipantNumber %in% ExclList5))
+
+
+# get only trials where a spacebar had to be pressed 
+TrialData5 <- subset(TrialData5, Length == "170")
+SpaceData5 <- as.data.frame(table(TrialData5$ParticipantNumber, TrialData5$space))
+SpaceData5 <- subset(SpaceData5, Var2 == "Space")
+
+# Outlier analysis with IQR
+criSpace5 <- summary(SpaceData5$Freq)[2] - 1.5 * IQR(SpaceData5$Freq)
+
+#a minimum of two errors have to be made for our outlier crietrion to be used, see below
+criSpace5 <- ifelse(criSpace5 > 7, 7, criSpace5)
+
+#add to exclusion list
+ExclList5 <- c(ExclList5, as.numeric(as.character(subset(SpaceData5, Freq <= criSpace5)$Var1)))
+
+```
+
+```{r excludeDemog}
+#remove participants that had to be excluded
+DemoData5 <- subset(DemoData5, !(ParticipantNumber %in% ExclList5))
+
+# Remove string from age response and make variable numeric
+DemoData5$Alter <- trimws(DemoData5$Alter, which = c("both", "left", "right"))
+DemoData5$Alter <- as.numeric(substr(DemoData5$Alter, 1, 2))
+```
+
+```{r visibility5}
+
+load("cachedData/visData5")
+
+#remove excluded pp
+visData5 <- subset(visData5, !(ParticipantNumber %in% ExclList5))
+
+visData5Aggr <- aggregate(correctAnswer ~ ParticipantNumber * CS + Length, visData5, sum)
+
+#check some aggr. descriptives
+tmp <- subset(visData5Aggr, Length == "153")
+#mean(tmp$correctAnswer)
+#table(tmp$correctAnswer)
+#chance level is 1/10
+
+```
+
+```{r Rating5, warning = FALSE, cache = TRUE}
+
+# Read in the Demographics data
+load("cachedData/ratingData5")
+
+#remove excluded participants (see above)
+ratingData5 <- subset(ratingData5, !(ParticipantNumber %in% ExclList5))
+
+ratingData5$correspondingTime <- as.factor(ratingData5$correspondingTime)
+
+#recode US as pos or neg into new variable
+ratingData5$USval <- ifelse(substr(as.character(ratingData5$correspondingUS), 1, 1) == "p", "positive", "negative")
+ratingData5$USval <- as.factor(ratingData5$USval)
+
+ratingData5Aggr <- aggregate(likingRating ~ ParticipantNumber * USval * correspondingTime, ratingData5, mean)
+
+ratingData5Aggr$ParticipantNumber <- factor(ratingData5Aggr$ParticipantNumber)
+ratingData5Aggr$correspondingTime <- factor(ratingData5Aggr$correspondingTime)
+
+
+```
+
+```{r analyzeRate5, cache = TRUE, dependson = "Rating5"}
+
+aovBF5 <- anovaBF(
+  likingRating ~ USval * correspondingTime + ParticipantNumber
+  , data = ratingData5Aggr
+  , whichRandom = "ParticipantNumber"
+  , whichModels = "top"
+  , rscaleFixed = "medium"
+  , multicore = FALSE
+)
+while(any(aovBF5@bayesFactor$error > 0.1)) aovBF5 <- recompute(aovBF5, multicore = FALSE)
+
+
+aovBF5eta <- apa_print(aov_ez(
+  dv = "likingRating" 
+  , within = c("USval", "correspondingTime")
+  , data = ratingData5Aggr
+  , id = "ParticipantNumber"
+  , fun_aggregate = mean
+))
+
+
+
+# restructure data for t test
+ratingData5AggrW <- spread(
+  ratingData5Aggr
+  , key = "USval"
+  , value = "likingRating"
+)
+
+
+#t test for short presentation
+allD30 <- ttestBF(subset(ratingData5AggrW, correspondingTime == "153")$positive,
+        subset(ratingData5AggrW, correspondingTime == "153")$negative,
+        paired = TRUE, 
+        rscale = "medium",
+        nullInterval = c(0, Inf))
+
+#t test for long presentation
+allD1000 <- ttestBF(subset(ratingData5AggrW, correspondingTime == "250")$positive,
+        subset(ratingData5AggrW, correspondingTime == "250")$negative,
+        paired = TRUE,
+        rscale = "medium",
+        nullInterval = c(0, Inf))
+
+```
+
+```{r visAndRate5}
+tmpVis <- subset(visData5Aggr, !Length %in% c(158, 170))
+
+#remove participants from exclusion list
+tmpVis <- subset(tmpVis, !(ParticipantNumber %in% ExclList5))
+
+tmpVis <- aggregate(correctAnswer ~ ParticipantNumber * Length, tmpVis, FUN = sum)
+
+#merge data frames (add correct identification to each pp in rating data frame)
+names(tmpVis)[names(tmpVis)=="Length"] <- "correspondingTime"
+ratingData5AggrW <- merge(ratingData5AggrW, tmpVis, by = c("ParticipantNumber", "correspondingTime"))
+
+ratingData5AggrW$EC <- ratingData5AggrW$positive - ratingData5AggrW$negative
+
+```
+
+We stopped data collection after `r allPP` participants took part in the study ($\mathit{N_{paid}}= 94$, all others received partial course credit), based on the results of the *t* tests (see below).
+Six participants were excluded, as they either took part in previous studies of this series <!-- pp 4, 5, 7, 13, 160-->or because they were told about the procedure of this study by others before taking part. <!--30-->
+One participant reported that she did not wear the headphone during the entire procedure and seven additional participants did not detect the surveillance target stimulus at least 7 times during the learning phase.
+These participants were also excluded before running any of the analyses.
+The total sample size in the following analyses was therefore N = `r length(unique(DemoData5$ParticipantNumber))` ($\mathit{M_{age}} = `r mean(DemoData5$Alter)`$, $\mathit{SD_{age}} = `r sd(DemoData5$Alter)`$; `r length(unique(DemoData5$ParticipantNumber[(DemoData5$Geschlecht %in% c("weiblich", "w", "weinlich", "Weiblich", "weibl. ", "Frau"))]))` female).
+
+# Results
+
+We first report the same analyses as in the previous experiment by Heycke et al. (2017) in order to test whether an EC effect could be found in the 30 and 1000 ms condition.
+Afterwards we report additional analyses using the data from the visibility check.
+
+## Evaluation
+
+```{r figure1, message = FALSE, warning = FALSE, fig.cap = "EC effects, split by CS presentation time. Large horizontal bars represent the mean EC effect, with the 95% highest density intervals displayed around them. Dots represent individual EC effects and additionally the smoothed distribution for each presentation time condition is shown. \\label{fig:figure1}"}
+
+# idividual EC effects, Mean, HDI & smoothed distribution
+ratingData5AggrW$pTime <- ifelse(as.character(ratingData5AggrW$correspondingTime) == "153", "30 ms", "1000 ms")
+ratingData5AggrW$pTime <- as.factor(ratingData5AggrW$pTime)
+
+pirateplot(formula = EC ~ pTime,
+           data = ratingData5AggrW,
+           theme = 2,
+           #pal = "black",
+           gl = 0,
+           gl.lwd = 2,
+           inf.method = "hdi",
+           inf.lwd = 0.7,
+           jitter.val = 0.008,
+           point.col = "black",
+           point.o = c(0.5,0.5),
+           xlab = "Presentation Time",
+           ylab = "EC effect")
+
+```
+
+
+In the overall ANOVA, we found an interaction of the presentation time of the CSs and the US valence, `r printBF(aovBF5, index = 1, N = TRUE, id = "ParticipantNumber")`; `r aovBF5eta$estimate$USval_correspondingTime`, see \autoref{fig:figure1}.
+
+The interaction was characterized by the fact that, when stimuli were presented for 1000 ms, an EC effect was found with a one-tailed t test, `r printBFt(allD1000, index = 1, N = TRUE)`.
+We therefore replicated previous findings, showing that images shown while a positive (consonant) sound was played were evaluated more positively than images that were shown while a negative (dissonant) sound was played.
+Contrary to our previous finding, we found statistical evidence for the absence of an EC effect in a one-tailed t test when stimuli were presented for 30 ms, `r printBFt(allD30, index = 1, N = TRUE)`.
+
+
+## Visibility
+
+```{r visCheck5}
+# t test testing whether visibility was above chance
+# chance level was 1/10 - in 40 trials which means 4 stimuli could be identified on chance
+tmpVis$percentCorrect <- tmpVis$correctAnswer/40
+
+ttestVis <- ttestBF(subset(tmpVis, correspondingTime == 153)$percentCorrect - 0.1, mu = 0)
+
+```
+
+We tested whether stimuli were identified above chance in the visibility testing procedure which followed the learning and evaluation phase.
+A two-tailed t test yielded that stimuli that were presented for 30 ms were indeed identified above chance, `r printBFt(ttestVis, N = TRUE)` (chance level = 0.1, average visibility = `r mean(subset(tmpVis, correspondingTime == 153)$percentCorrect)`, *SD* = `r sd(subset(tmpVis, correspondingTime == 153)$percentCorrect)`).
+
+## Exploratory analysis
+
+```{r exclVisStim2}
+visData5Merge <- subset(visData5Aggr, !Length %in% c(158, 170))
+
+#remove participants from exclusion list
+visData5Merge <- subset(visData5Merge, !(ParticipantNumber %in% ExclList5))
+
+#merge data frames (add correct identification to each pp in rating data frame)
+names(ratingData5)[names(ratingData5)=="correspondingTime"] <- "Length"
+ratingData5 <- merge(ratingData5, visData5Merge, by = c("ParticipantNumber", "CS", "Length"))
+
+rD5twoSeen <- subset(ratingData5, !(Length == "153" & correctAnswer > 2))
+
+rD5twoSeenAggr <- aggregate(likingRating ~ ParticipantNumber * USval * Length, rD5twoSeen, mean)
+
+rD5twoSeenAggr$ParticipantNumber <- as.factor(rD5twoSeenAggr$ParticipantNumber)
+
+#run t test for 30 ms condition and exclude all pp that do not have at least one value for pos or neg in 30 ms condition
+
+tmp30.two <- subset(rD5twoSeenAggr, Length == "153")
+
+tmp30.two <- spread(
+  tmp30.two
+  , key = "USval"
+  , value = "likingRating"
+)
+
+#exclude all pp that do not have at least one value for pos or neg in 30 ms condition
+tmp30.two <- tmp30.two[complete.cases(tmp30.two), ]
+
+oneSeen30.two <- ttestBF(tmp30.two$positive,
+                        tmp30.two$negative,
+                        paired = TRUE,
+                        rscale = "medium",
+                        nullInterval = c(0, Inf))
+
+#same analysis as above but only for stimuli seen at least 3 times in vis check
+rd5moreTwoSeen <- subset(ratingData5, Length == "153")
+rd5moreTwoSeen <- subset(rd5moreTwoSeen, correctAnswer > 2)
+rd5moreTwoSeen <- aggregate(likingRating ~ ParticipantNumber * USval, rd5moreTwoSeen, mean)
+rd5moreTwoSeen$ParticipantNumber <- as.factor(rd5moreTwoSeen$ParticipantNumber)
+tmp30.MoreTwo <- spread(rd5moreTwoSeen, key = "USval", value = "likingRating")
+tmp30.MoreTwo <- tmp30.MoreTwo[complete.cases(tmp30.MoreTwo), ]
+
+oneSeen30.MoreTwo <- ttestBF(tmp30.MoreTwo$positive,
+                        tmp30.MoreTwo$negative,
+                        paired = TRUE,
+                        rscale = "medium",
+                        nullInterval = c(0, Inf))
+
+```
+
+```{r goodLookers}
+adler <- as.integer(as.character(tmp30.MoreTwo$ParticipantNumber))
+
+ratingData5AggrW$adler <- ifelse(as.integer(as.character(ratingData5AggrW$ParticipantNumber)) %in% adler, "adler", "normalVision")
+ratingData5AggrW$adler <- as.factor(ratingData5AggrW$adler)
+
+# test if 18 people who saw brief stimuli well had larger EC effect than all other people
+adlerVsRest <- ttestBF(subset(ratingData5AggrW, correspondingTime == 250 & adler == "adler")$EC,
+                       subset(ratingData5AggrW, correspondingTime == 250 & adler == "normalVision")$EC,
+                        paired = FALSE,
+                        rscale = "medium")
+```
+
+To investigate whether an EC effect might exist for stimuli that were not consciously perceived, we excluded individual ratings of stimuli that were identified three or more times in the visibility check (i.e., we included only stimuli identified below, at, or slightly above chance).
+^[As we had two stimuli per experimental cell (e.g., two different CSs for briefly presented stimuli paired with a positive US), we had at least one rating per US valence in the 30 ms condition for `r length(unique(tmp30.two$ParticipantNumber))` participants when applying the exclusion criterion.]
+Similar to the result when using all evaluations, in a one-tailed t test we found evidence for the absence of an EC effect for stimuli presented for 30 ms, `r printBFt(oneSeen30.two, index = 1, N = TRUE)`.
+Second, we also analyzed only evaluations of stimuli presented for 30 ms in the learning phase that had been selected at least 3 times during the subsequent visibility check.
+There were only `r nrow(tmp30.MoreTwo)` participants that had correctly identified at least one positive and one negatively paired CS more than three times, allowing for their inclusion in the paired *t* test analysis. 
+Nevertheless, in a one-tailed t test we found strong indications for an EC effect for briefly presented CSs that had been identified at least three times in the visibility test, `r printBFt(oneSeen30.MoreTwo, index =  1, N = TRUE)`.[^adler]
+
+[^adler]: We additionally tested whether these 18 participants, who showed a better visibility for the 30 ms stimuli, also showed a larger EC effect for stimuli presented for 1000 ms than all other participants. There were no indications that this was the case, `r printBFt(adlerVsRest, N = TRUE)`.
+
+# Discussion
+
+The main goal of this experiment was to replicate our previous finding of an EC effect for briefly presented stimuli, using a cross-modal design.
+Replicating previous work, we found compelling evidence for EC effects with stimuli shown for 1000 ms, demonstrating that the general finding of cross-modal EC is robust and generalizes to a new set of CSs.
+However, and contrary to our previous study, we did not find any evidence for an EC effect for briefly presented stimuli, but strong evidence for the *absence* of EC effects for these stimuli.
+If indeed spontaneous associations between CS and US underlie EC effects in the absence of contingency awareness, one could speculate that perceiving CSs consciously might prevent EC effects.
+We therefore analyzed only the evaluation of stimuli that had been identified at or around (but not above) chance level, but the conclusion remains unaltered: 
+We again found statistical evidence for the absence of an EC effect.
+
+In contrast, we observed an EC effect in the subset of stimuli that were briefly presented but recognized at least 3 times in the subsequent visibility test.
+Considering this substantial EC effect for briefly presented stimuli (*d* = 0.74) in this subgroup, one could speculate that the EC effect found in our previous study was driven by a similar subgroup of individuals who saw some of the stimuli.
+This possibility should be taken into consideration when looking at previous studies that claim to have found subliminal EC but did not check for actual visibility in a stringent manner (as criticized by Sweldens and colleagues, 2014).
+The results of the present study therefore demonstrate that (I) a cross-modal EC effect with clearly visible CS stimuli appears to be robust; (II) when CS stimuli are presented briefly, but can still be identified, a cross-modal EC effect can also be obtained (cf. Stahl et al., 2016); and (III) when CS stimuli are presented briefly but cannot be identified, EC effects are absent even in the cross-modal paradigm that allows for simultaneous presentation.
+
+## Limitations
+
+The visibility check of the main study showed that stimuli presented for 30 ms were identified at above-chance levels.
+This finding was surprising given that pilot tests showed chance-level identification for the same stimuli.
+A procedural difference between the visibility checks in the main study and the pilot may help account for this effect:
+In the pilot, the majority of trials included suboptimally presented stimuli, whereas in the main study more than half of the stimuli were clearly visible. 
+The fact that most stimuli were difficult to see in the pilot could have reduced participants' motivation to detect the stimuli, thus lowering visibility [@pratte_task-difficulty_2009]. 
+Additionally, the same characteristic could have had an influence on participants' response strategy:
+As half of the CSs were presented for 1000 ms (and two additional stimuli for 80 ms or 200 ms), those stimuli could easily be identified during the task.
+When a stimulus was shown briefly and participants were asked to identify the stimulus from the set of ten stimuli, participants might have discarded the six stimuli that they knew were shown for longer durations from their consideration.
+This would lead to a guessing rate closer to 1/4 instead of the rate of the 1/10 we assumed.
+Note that the visibility of the subset of stimuli that showed EC (i.e., those correctly identified on 3 or more trials) would still be above the thus-corrected chance level.
+Future research should assess the plausibility of these speculations.
+
+If we take these results at face value, we replicated the finding by Stahl et al. (2016) that above-chance CS identification might be insufficient for EC effects with briefly presented stimuli. 
+However, given our speculations about the visibility check above, it might be possible that stimuli were indeed presented subliminally and we overestimated the actual visibility.
+In any case, the main conclusion remains unaltered: 
+EC effects were absent for suboptimal (i.e., briefly presented and masked) CSs, whereas EC was robust for clearly visible CSs (i.e., those presented for a longer duration of 1000 ms).
+
+A second limitation concerns the pattern-masking technique, which interferes with conscious processing by reducing the amount of physical stimulation. 
+Other masking techniques (e.g., metacontrast) are available that may more selectively interfere with conscious identification without reducing physical stimulation. 
+To the degree that such techniques allow for more unconscious processing of the CSs than pattern masking, it is possible that EC may obtain for consciously unidentified CS stimuli.
+
+## Implications
+
+The main theoretical goal of this study was a test of the necessity of contingency awareness for EC, as predicted by propositional single-process views. 
+We found no indication for EC effects without CS visibility (which is a precondition for contingency awareness). 
+The results of this study are therefore in line with the view that contingency awareness is necessary for EC effects to form. 
+It should be taken into account, however, that contingency awareness could be manipulated by means other than brief presentation; future studies should look at different options of manipulation contingency awareness directly. 
+Notably, recent studies using parafoveal presentation [@dedonder_overcoming_2014] or continuous flash suppression [@hoegden_does_inpress] to manipulate contingency awareness experimentally, also failed to find any evidence for EC effects in the absence of contingency awareness.
+In addition, it would be interesting to test whether EC effects with briefly presented and masked CSs follow other regularities than EC effects with clearly visible CSs.
+This was recently suggested by @greenwald_unconscious_2017, who report learning effects for suboptimally presented CS stimuli for which contingency awareness was not present. 
+Notably, a learning effect in the absence of contingency awareness was found only when stimuli were not (or barely) identifiable. 
+When stimuli were more readily identifiable, learning effects depended on contingency awareness. 
+The results therefore suggest that two qualitatively different processes might be involved in learning.
+Furthermore, single-and dual-process views have different predictions that go beyond contingency awareness (e.g., relational information about CS and US) that should be considered before evaluating the merits of both views in explaining the mechanisms underlying EC [for a review see @Corneille_reversing_2018]. 
+
+Taken together, the results of this study challenge the finding by Heycke et al. (2017) that a cross-modal EC paradigm might be beneficial for EC effects with briefly presented stimuli and support the claim made by Stahl and colleagues (2016) that above-chance CS identification may be necessary but insufficient for attitude learning. 
+
+\bigskip
+
+#### Ethics
+The present research used procedures that are exempt from mandatory formal ethical approval under the ethical guidelines of the Deutsche Gesellschaft für Psychologie. 
+We asked for an informed consent by each participant and instructed them about their rights before the start of the experiment (e.g., right to abort at any moment, be informed about study goals, and anonymity of data). 
+
+
+
+\newpage
+
+# References
+```{r create_r-references}
+r_refs(file = "r-references5.bib")
+```
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
