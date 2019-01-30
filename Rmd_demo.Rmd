@@ -1,0 +1,36 @@
+---
+title: "How to write your paper in Rmd"
+author: "Sau-Chin Chen"
+date: "2019/1/28"
+output: pdf_document
+bibliography: "Orientation Cross Languages.bib"
+---
+
+```{r setup, include = FALSE}
+  knitr::opts_chunk$set(
+	echo = FALSE,
+	cache = FALSE
+)
+  library("kableExtra")
+  library("dplyr")
+  library("papaja")
+```
+
+Below text was from https://psyarxiv.com/t2pjv/
+
+## Data Collection Plan
+
+This project follows the protocols of multi-lab registered replication reports [e.g., @CheungRegisteredReplicationReport2016; @HaggerMultilabPreregisteredReplication2016a] and the workflow of Psychological Science Accelerator [see @moshontzPsychologicalScienceAccelerator2018, Figure 2]. Until the submission of this proposal, there have been `r read.csv("Lab-summary.csv") %>% pull(Number.of.Laboratories) %>% sum()` participating laboratories from `r read.csv("Lab-summary.csv") %>% pull(Language) %>% nlevels()` languages (See registered laboratories and expected sample size in and \autoref{tab:lab-info}). Each registered laboratory will upload their publicly accessible pre-registered plan on the OSF. The principal investigators and the network committees will use the plans to guide the preparation of both stimuli and scripts.
+
+
+```{r lab-info, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+tbl_note <- paste("Recruitment of the participating laboratories is going on while we submitted this proposal. Last updated:", format(Sys.Date(), "%Y/%m/%d"))
+
+read.csv("Lab-summary.csv") %>%
+  apa_table(caption = "Summary of registered participating laboratories in the function of primary languages and sample size.",
+            col.names = c("Language","Number of Laboratories","Registered Sample Size"),
+            note = tbl_note,
+            escape = TRUE)
+```
+
+## Reference

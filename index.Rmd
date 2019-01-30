@@ -1,0 +1,100 @@
+---
+title: "Write your Dynamic Documents"
+author: "Sau-Chin Chen, Tobias Heycke"
+date: "2019/2/7"
+output: 
+  revealjs::revealjs_presentation:
+    theme: white
+    incremental: true
+    mathjax: local
+    fig_caption: true
+    self_contained: false
+    reveal_plugins: ["zoom"]
+---
+
+## Before we start
+
+- [R](https://www.r-project.org/)
+- [Rstudio](https://www.rstudio.com/)
+- (Optional) [Git](https://git-scm.com/)
+- Download the [example files](https://github.com/SCgeeker/WS_dynamic_doc/archive/master.zip)
+
+
+## Overview
+
+|Input<br>Format|Content|Render|Output<br>Format|
+|---|---------|----------|------|
+|.md         |text<br>markdown tags<br>latex codes<br>citation key|pandoc<br>pandoc-citeproc|.html<br>.pdf<br>.docx |
+|.Rmd        |code chunks<br>inline codes|rmarkdown |.html<br>.pdf<br>.docx  |
+|Templates<br>(e.g., APA)|footnote<br>appendix doc|papaja|.pdf|
+
+## Resource
+
+[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+
+[papaja: Reproducible APA manuscripts with R Markdown](https://crsh.github.io/papaja_man/)
+
+# Markdown
+
+## Preparation
+
+- [markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+
+- off-line editor
+    - any text editor
+    - Rstudio
+
+- render: [pandoc](http://pandoc.org/)
+- (Optional)Version Control tool: [Git](https://git-scm.com/)
+
+## Tips
+- Keep your text as 'clean' as you can. 
+- Leave typesetting to *markdown tags*, *Latex codes*
+- Organize the bibilography in [Zotero](http://zotero.org/)
+
+# Rmarkdown
+
+## Preparation
+
+- [R](https://www.r-project.org/)
+- [Rstudio](https://www.rstudio.com/)
+- [knitr package](https://cran.r-project.org/web/packages/knitr/index.html)
+
+## Setup of sweave
+
+![Source: G-Force, 2012/8/6](https://i2.wp.com/gforge.se/wp-content/uploads/2012/06/Sweave-to-knitr-options.jpg)
+
+
+## Tips
+- in text -> in table -> in figure
+- Import the analytical data at beginning.
+- If statistical models take time, it is better to summarize them prior to organize them in chunks.
+- If it is workable, making of tables and figures by codes is better than the external files.
+
+# papaja
+
+## Preparation
+- TeX distribution([installation guide]((https://tobiasheycke.github.io/pages/fullmiktex)) by Tobias)
+    - [TinyTex](https://yihui.name/tinytex/)
+    - [MikTeX](http://miktex.org/) for Windows
+    - [MacTeX](https://tug.org/mactex/) for Mac
+    - [TeX Live](http://www.tug.org/texlive/) for Linux 
+
+- papaja package
+    - [installing commands](https://crsh.github.io/papaja_man/introduction.html#installing-papaja)
+
+
+## Tips
+- Full TeX distribution installation before your first `papaja` article.
+- Manage "Title page" and "Abstract" in YAML.
+- Prepare your bibliography file and citation style while writing paper. Set them up in YAML([Guide by Frederik](https://crsh.github.io/papaja_man/writing.html#citations)).
+- Check .tex file(s) when you don't get what you want.
+- `papaja` is under development. Search the solutions and submit your questions at [Github](https://github.com/crsh/papaja/issues).
+
+
+## Append appndieces to manuscript
+![in YAML](https://user-images.githubusercontent.com/1747068/43012188-b6bff12c-8c13-11e8-9277-f4ce36f859e9.png) 
+
+## Append appndieces to manuscript
+
+![end of main Rmd](https://user-images.githubusercontent.com/1747068/43012230-daf80188-8c13-11e8-894d-d750cb03c6ae.png)
