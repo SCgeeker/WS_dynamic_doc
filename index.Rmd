@@ -36,6 +36,10 @@ output:
 
 # Markdown
 
+##
+
+**Example Materials**:<br> `markdown_demo.md`<br>`markdown_demo.bib`<br>`Workshop-Open-Science1.png`
+
 ## Preparation
 
 - [markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
@@ -53,6 +57,10 @@ output:
 - Organize the bibilography in [Zotero](http://zotero.org/)
 
 # Rmarkdown
+
+## 
+
+**Example Materials**:<br> `Rmd_demo.md`<br>`Orientation Cross Languages.bib`<br>`Lab-summary.csv`
 
 ## Preparation
 
