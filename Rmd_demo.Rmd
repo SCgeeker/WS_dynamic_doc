@@ -22,6 +22,7 @@ Below text was from https://psyarxiv.com/t2pjv/
 
 This project follows the protocols of multi-lab registered replication reports [e.g., @CheungRegisteredReplicationReport2016; @HaggerMultilabPreregisteredReplication2016a] and the workflow of Psychological Science Accelerator [see @moshontzPsychologicalScienceAccelerator2018, Figure 2]. Until the submission of this proposal, there have been `r read.csv("Lab-summary.csv") %>% pull(Number.of.Laboratories) %>% sum()` participating laboratories from `r read.csv("Lab-summary.csv") %>% pull(Language) %>% nlevels()` languages (See registered laboratories and expected sample size in and \autoref{tab:lab-info}). Each registered laboratory will upload their publicly accessible pre-registered plan on the OSF. The principal investigators and the network committees will use the plans to guide the preparation of both stimuli and scripts.
 
+<!--You can add comments like this and they will not appear in the knitted document -->
 
 ```{r lab-info, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 tbl_note <- paste("Recruitment of the participating laboratories is going on while we submitted this proposal. Last updated:", format(Sys.Date(), "%Y/%m/%d"))

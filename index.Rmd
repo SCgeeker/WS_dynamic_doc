@@ -16,7 +16,7 @@ output:
 
 - [R](https://www.r-project.org/)
 - [Rstudio](https://www.rstudio.com/)
-- (Optional) [Git](https://git-scm.com/)
+- (Optional) [Git](https://git-scm.com/),[pandoc](https://pandoc.org/installing.html)
 - Download the [example files](https://github.com/SCgeeker/WS_dynamic_doc/archive/master.zip)
 
 
@@ -48,13 +48,13 @@ output:
     - any text editor
     - Rstudio
 
-- render: [pandoc](http://pandoc.org/)
+- render: [pandoc](http://pandoc.org/), [installation guide](https://pandoc.org/installing.html)
 - (Optional)Version Control tool: [Git](https://git-scm.com/)
 
 ## Tips
 - Keep your text as 'clean' as you can. 
 - Leave typesetting to *markdown tags*, *Latex codes*
-- Organize the bibilography in [Zotero](http://zotero.org/)
+- Organize the bibliography in [Zotero](http://zotero.org/)
 
 # Rmarkdown
 
@@ -82,9 +82,9 @@ output:
 # papaja
 
 ## Preparation
-- TeX distribution([installation guide]((https://tobiasheycke.github.io/pages/fullmiktex)) by Tobias)
+- TeX distribution
     - [TinyTex](https://yihui.name/tinytex/)
-    - [MikTeX](http://miktex.org/) for Windows
+    - [MikTeX](http://miktex.org/) for Windows ([installation guide]((https://tobiasheycke.github.io/pages/fullmiktex)) by Tobias)
     - [MacTeX](https://tug.org/mactex/) for Mac
     - [TeX Live](http://www.tug.org/texlive/) for Linux 
 
@@ -100,9 +100,9 @@ output:
 - `papaja` is under development. Search the solutions and submit your questions at [Github](https://github.com/crsh/papaja/issues).
 
 
-## Append appndieces to manuscript
+## Append appendices to manuscript
 ![in YAML](https://user-images.githubusercontent.com/1747068/43012188-b6bff12c-8c13-11e8-9277-f4ce36f859e9.png) 
 
-## Append appndieces to manuscript
+## Append appendices to manuscript
 
 ![end of main Rmd](https://user-images.githubusercontent.com/1747068/43012230-daf80188-8c13-11e8-894d-d750cb03c6ae.png)
