@@ -85,7 +85,7 @@ output:
 
 ##
 
-**Example Materials**:<br> To be Available in Workshop
+**Example Materials**:<br> `papaja_appendix_test.zip`
 
 ## Preparation
 - TeX distribution

@@ -2,7 +2,10 @@
 title: "Markdown demo document"
 author: "John Gabriele"
 description: This is YAML.
-output: pdf_document
+output:
+  word_document: default
+  html_document:
+    df_print: paged
 bibliography: markdown_demo.bib
 ---
 
