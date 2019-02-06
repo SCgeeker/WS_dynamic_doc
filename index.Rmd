@@ -16,8 +16,8 @@ output:
 
 - [R](https://www.r-project.org/)
 - [Rstudio](https://www.rstudio.com/)
-- (Optional) [Git](https://git-scm.com/),[pandoc](https://pandoc.org/installing.html),[Zotero](https://www.zotero.org/download/)
 - Download the [example files](https://github.com/SCgeeker/WS_dynamic_doc/archive/master.zip)
+- (Optional) [Git](https://git-scm.com/),[pandoc](https://pandoc.org/installing.html),[Zotero](https://www.zotero.org/download/)
 
 
 ## Overview
@@ -74,18 +74,22 @@ output:
 
 ![Source: G-Force, 2012/8/6](https://i2.wp.com/gforge.se/wp-content/uploads/2012/06/Sweave-to-knitr-options.jpg)
 
-
 ## Tips
-- in text -> in table -> in figure
+- in text 
+-> in table -> in figure
 - Import the analytical data at beginning.
 - If statistical models take time, it is better to summarize them prior to organize them in chunks.
 - If it is workable, making of tables and figures by codes is better than the external files.
+
+## Try it
+
+Compare your output with [the original article](https://psyarxiv.com/t2pjv/).
 
 # papaja
 
 ##
 
-**Example Materials**:<br> `papaja_appendix_test.zip`
+**Example Materials**:<br> `papaja_appendix_test.zip` <br> `PSA_Registered_Plan.zip` <br> `papaja dissertation example.zip`
 
 ## Preparation
 - TeX distribution
@@ -95,14 +99,24 @@ output:
     - [TeX Live](http://www.tug.org/texlive/) for Linux 
 
 - papaja package
-    - [installing commands](https://crsh.github.io/papaja_man/introduction.html#installing-papaja)
+    - [installing commands](https://crsh.github.io/papaja_man/introduction.html#installing-papaja) from `papaja` mannual
+    - Other handy tools: [citr](https://github.com/crsh/citr),[retractcheck](https://github.com/libscie/retractcheck)
 
+## Create your bibtex file
+
+>- [Tutorial clip](https://www.youtube.com/watch?v=ixUF3BN_KOA)
+
+```
+## Set up your bibtex file in YAML like this
+bibliography: "my_bibliography.bib"
+```
 
 ## Tips
 - Full TeX distribution installation before your first `papaja` article.
 - Manage "Title page" and "Abstract" in YAML.
-- Prepare your bibliography file and citation style while writing paper. Set them up in YAML([Guide by Frederik](https://crsh.github.io/papaja_man/writing.html#citations) ).
-- Check .tex file(s) when you don't get what you want.
+- Prepare your bibliography file and [citation style](https://www.zotero.org/styles) while writing paper. Set them up in YAML([Guide by Frederik](https://crsh.github.io/papaja_man/writing.html#citations) ).
+- Follow [best practices](https://crsh.github.io/papaja_man/tips-and-tricks.html#best-practices)
+- Check `.tex` and `.log` when you didn't get what you want.
 - `papaja` is under development. Search the solutions and submit your questions at [Github](https://github.com/crsh/papaja/issues).
 
 
@@ -112,3 +126,8 @@ output:
 ## Append appendices to manuscript
 
 ![end of main Rmd](https://user-images.githubusercontent.com/1747068/43012230-daf80188-8c13-11e8-894d-d750cb03c6ae.png)
+
+## Try it!
+
+>- Sau-Chin's `PSA RR proposal`
+>- Tobias' `Dissertation template`

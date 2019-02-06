@@ -459,8 +459,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li class="fragment"><a href="https://www.r-project.org/">R</a></li>
 <li class="fragment"><a href="https://www.rstudio.com/">Rstudio</a></li>
-<li class="fragment">(Optional) <a href="https://git-scm.com/">Git</a>,<a href="https://pandoc.org/installing.html">pandoc</a>,<a href="https://www.zotero.org/download/">Zotero</a></li>
 <li class="fragment">Download the <a href="https://github.com/SCgeeker/WS_dynamic_doc/archive/master.zip">example files</a></li>
+<li class="fragment">(Optional) <a href="https://git-scm.com/">Git</a>,<a href="https://pandoc.org/installing.html">pandoc</a>,<a href="https://www.zotero.org/download/">Zotero</a></li>
 </ul>
 </section>
 <section id="overview" class="slide level2">
@@ -555,10 +555,13 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment">If statistical models take time, it is better to summarize them prior to organize them in chunks.</li>
 <li class="fragment">If it is workable, making of tables and figures by codes is better than the external files.</li>
 </ul>
+</section><section id="try-it" class="slide level2">
+<h2>Try it</h2>
+<p>Compare your output with <a href="https://psyarxiv.com/t2pjv/">the original article</a>.</p>
 </section></section>
 <section><section id="papaja" class="title-slide slide level1"><h1>papaja</h1></section><section id="section-2" class="slide level2">
 <h2></h2>
-<p><strong>Example Materials</strong>:<br> <code>papaja_appendix_test.zip</code></p>
+<p><strong>Example Materials</strong>:<br> <code>papaja_appendix_test.zip</code> <br> <code>PSA_Registered_Plan.zip</code> <br> <code>papaja dissertation example.zip</code></p>
 </section><section id="preparation-2" class="slide level2">
 <h2>Preparation</h2>
 <ul>
@@ -571,16 +574,25 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul></li>
 <li class="fragment">papaja package
 <ul>
-<li class="fragment"><a href="https://crsh.github.io/papaja_man/introduction.html#installing-papaja">installing commands</a></li>
+<li class="fragment"><a href="https://crsh.github.io/papaja_man/introduction.html#installing-papaja">installing commands</a> from <code>papaja</code> mannual</li>
+<li class="fragment">Other handy tools: <a href="https://github.com/crsh/citr">citr</a>,<a href="https://github.com/libscie/retractcheck">retractcheck</a></li>
 </ul></li>
 </ul>
+</section><section id="create-your-bibtex-file" class="slide level2">
+<h2>Create your bibtex file</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=ixUF3BN_KOA">Tutorial clip</a></li>
+</ul>
+<pre><code>## Set up your bibtex file in YAML like this
+bibliography: &quot;my_bibliography.bib&quot;</code></pre>
 </section><section id="tips-2" class="slide level2">
 <h2>Tips</h2>
 <ul>
 <li class="fragment">Full TeX distribution installation before your first <code>papaja</code> article.</li>
 <li class="fragment">Manage “Title page” and “Abstract” in YAML.</li>
-<li class="fragment">Prepare your bibliography file and citation style while writing paper. Set them up in YAML(<a href="https://crsh.github.io/papaja_man/writing.html#citations">Guide by Frederik</a> ).</li>
-<li class="fragment">Check .tex file(s) when you don’t get what you want.</li>
+<li class="fragment">Prepare your bibliography file and <a href="https://www.zotero.org/styles">citation style</a> while writing paper. Set them up in YAML(<a href="https://crsh.github.io/papaja_man/writing.html#citations">Guide by Frederik</a> ).</li>
+<li class="fragment">Follow <a href="https://crsh.github.io/papaja_man/tips-and-tricks.html#best-practices">best practices</a></li>
+<li class="fragment">Check <code>.tex</code> and <code>.log</code> when you didn’t get what you want.</li>
 <li class="fragment"><code>papaja</code> is under development. Search the solutions and submit your questions at <a href="https://github.com/crsh/papaja/issues">Github</a>.</li>
 </ul>
 </section><section id="append-appendices-to-manuscript" class="slide level2">
@@ -593,6 +605,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <figure>
 <img data-src="https://user-images.githubusercontent.com/1747068/43012230-daf80188-8c13-11e8-894d-d750cb03c6ae.png" alt="end of main Rmd" /><figcaption>end of main Rmd</figcaption>
 </figure>
+</section><section id="try-it-1" class="slide level2">
+<h2>Try it!</h2>
+<ul>
+<li>Sau-Chin’s <code>PSA RR proposal</code></li>
+<li>Tobias’ <code>Dissertation template</code></li>
+</ul>
 </section></section>
     </div>
   </div>
