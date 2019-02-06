@@ -111,6 +111,8 @@ Compare your output with [the original article](https://psyarxiv.com/t2pjv/).
 bibliography: "my_bibliography.bib"
 ```
 
+![How to use citr](https://raw.githubusercontent.com/crsh/citr/master/tools/images/addin_demo.gif)
+
 ## Tips
 - Full TeX distribution installation before your first `papaja` article.
 - Manage "Title page" and "Abstract" in YAML.
