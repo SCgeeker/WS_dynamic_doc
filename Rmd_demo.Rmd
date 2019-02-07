@@ -16,9 +16,8 @@ bibliography: "Orientation Cross Languages.bib"
   library("papaja")
 ```
 
-Below text was from https://psyarxiv.com/t2pjv/
 
-## Data Collection Plan
+## Example 1: Description of participated laboratories
 
 This project follows the protocols of multi-lab registered replication reports [e.g., @CheungRegisteredReplicationReport2016; @HaggerMultilabPreregisteredReplication2016a] and the workflow of Psychological Science Accelerator [see @moshontzPsychologicalScienceAccelerator2018, Figure 2]. Until the submission of this proposal, there have been `r read.csv("Lab-summary.csv") %>% pull(Number.of.Laboratories) %>% sum()` participating laboratories from `r read.csv("Lab-summary.csv") %>% pull(Language) %>% nlevels()` languages (See registered laboratories and expected sample size in and \autoref{tab:lab-info}). Each registered laboratory will upload their publicly accessible pre-registered plan on the OSF. The principal investigators and the network committees will use the plans to guide the preparation of both stimuli and scripts.
 
@@ -33,5 +32,14 @@ read.csv("Lab-summary.csv") %>%
             note = tbl_note,
             escape = TRUE)
 ```
+
+## Example 2: Analyze cars stopping distance
+```{r cars, message=FALSE, warning=FALSE, include=FALSE}
+carsdata <- data.frame(cars, group = ifelse(cars$speed <= 15,"slow","fast")) %>% 
+  with(t.test(dist~group, var.equal=TRUE))%>%
+  apa_print()
+```
+
+50 cars were categorized into slow group (slower than 16 mph) and fast group (faster than 15 mph). We compared the stopping didtance (ft.) of the two groups. We found the faster group required longer distance for stopping than slow group, `r carsdata$full_result`.
 
 ## Reference
